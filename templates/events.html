@@ -1,1 +1,53 @@
 <!doctype html>
+<link rel="alternate" type="application/json" href="{{ request.path }}.json">
+<title>All Events</title>
+{% if request.args["sort-by"] == "date" %}
+<!-- should that be by time??-->
+<a href="{{ url_for('eventslist') }}?sort-by=date">sort by date</a>
+{% else %}
+<form class="search" method="get">
+  <input name="q" type="text" value="{{ request.args["q"] }}">
+  {% if 'sort-by' in request.args %}
+  <input name="sort-by" type="hidden" value="{{ request.args["sort-by"] }}">
+  {% endif %}
+  <input class="query" type="submit" value="search">
+</form>
+<ol>
+  {% for event_id, event in events %}
+  <li>
+    Date: {{ dates[event.date] }}
+    <a rel="item" href="{{ url_for('event', event_id=event_id) }}">
+      {{ event.name }}
+    </a>
+  </li>
+  {% endfor %}
+</ol>
+<form class="event-editor" action="{{ url_for('eventlist') }}" method="post">
+  <label>Name
+    <input name="name" type="text">
+  </label>
+  <br>
+  <label>Venue
+    <input name="venue" type="text">
+  </label>
+  <br>
+  <label>Location
+    <input name="location" type="text">
+  </label>
+  <br>
+   <label>Date
+    <input name="date" type="text">
+  </label>
+ <br>
+ <label>Time
+   <input name="time" type="text">
+ </label>
+ <br>
+ <label>Phone
+  <input name="phone" type="text">
+ </label>
+ <br>
+ <textarea name="description"></textarea>
+ <br>  
+ <input class="create" type="submit" value="create new request">
+</form>
