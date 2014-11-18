@@ -6,12 +6,12 @@ import string
 import random
 from datetime import datetime
 
-# define our priority levels
-PRIORITIES = ( 'closed', 'low', 'normal', 'high' )
+# define our categories
+CATEGORIES = ( 'shopping', 'restaurant', 'nightlife' )
 
-# load help requests data from disk, load into dictionary (key/value)
-with open('data.json') as data:
-    helprequests = json.load(data)
+# load business data from disk, load into dictionary (key/value)
+with open('business.json') as data:
+    businesses = json.load(data)
 
 #
 # define some helper functions
@@ -19,23 +19,23 @@ with open('data.json') as data:
 def generate_id(size=6, chars=string.ascii_lowercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
-def error_if_helprequest_not_found(helprequest_id):
-    if helprequest_id not in helprequests:
-        message = "Help request {} doesn't exist".format(helprequest_id)    
+def error_if_business_not_found(business_id):
+    if business_id not in businesses:
+        message = "Business {} doesn't exist".format(business_id)    
         abort(404, message)
 
-def filter_and_sort_helprequests(q='', sort_by='time'):
+def filter_and_sort_businesses(q='', sort_by='category'):
     filter_function = lambda x: q.lower() in (
-        x[1]['title'] + x[1]['description']).lower()
-    filtered_helprequests = filter(filter_function, helprequests.items())
+        x[1]['name'] + x[1]['description']).lower()
+    filtered_helprequests = filter(filter_function, businesses.items())
     key_function = lambda x: x[1][sort_by]
     return sorted(filtered_helprequests, key=key_function, reverse=True)
         
-def render_helprequest_as_html(helprequest):
+def render_business_as_html(business):
     return render_template(
-        'helprequest.html',
-        helprequest=helprequest,
-        priorities=reversed(list(enumerate(PRIORITIES))))
+        'business.html',
+        business=business,
+        categories=reversed(list(enumerate(CATEGORIES))))
     
 def render_helprequest_list_as_html(helprequests):
     return render_template(
