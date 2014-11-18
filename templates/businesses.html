@@ -14,7 +14,7 @@
 <ol>
   {% for business_id, business in businesses %}
   <li>
-    Category: {{ categoriess[business.category] }}
+    Category: {{ categories[business.category] }}
     <a rel="item" href="{{ url_for('business', business_id=business_id) }}">
       {{ business.name }}
     </a>
