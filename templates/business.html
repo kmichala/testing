@@ -1,0 +1,22 @@
+<!doctype html>
+<link rel="alternate" type="application/json" href="{{ businesses }}.json">
+<title>{{ businesses.name }}</title>
+<form class="business-editor" enctype="application/json" method="patch">
+Name:
+<input type="text" name="name" value={{ businesses.name }}><br>
+Location:
+<input type="text" name="location" value={{ businesses.location }}><br>
+URL:
+<input type="text" name="URL" value={{ businesses.URL }}><br>
+Phone:
+<input type="text" name="phone" value={{ businesses.phone }}><br>
+Hours:
+<input type="text" name="hours" value={{ businesses.hours }}><br>
+Rating:
+<input type="text" name="rating" value={{ businesses.rating }}><br>
+Description:
+<input type="text" name="description" value={{ businesses.description }}><br>
+Category:
+<input type="text" name="category" value={{ businesses.category }}><br>
+<input class="update" type="submit" value="update business">
+</form>
