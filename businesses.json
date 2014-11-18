@@ -1,0 +1,31 @@
+{ "fhs6jo" :
+  { "name" : "Acme",
+    "location" : "110 E Main St, Carrboro",
+    "URL" : "acmecarrboro.com",
+    "phone" : "919-929-2263",
+    "hours" : "5:30pm-9pm",
+    "rating": 4.5,
+    "description": "rad restauarant",
+    "category": "bar, restauarant" 
+  },
+  "dig73h":
+  { "name" : "Orange County Social Club",
+    "location" : "108 E Main St, Carrboro",
+    "URL" : "orangecountysocialclub.com",
+    "phone" : "919-933-0669",
+    "hours" : "5:30pm-2am",
+    "rating": 3.9,
+    "description": "rad bar",
+    "category": "bar" 
+  },
+  "0f4uqv":
+  { "name" : "Sofia's",
+    "location" : "200 N Greensboro St, Carrboro",
+    "URL" : "carrmillmall.com.com",
+    "phone" : "919-942-9008",
+    "hours" : "10am-6pm",
+    "rating": 3.9,
+    "description": "rad store",
+    "category": "shop" 
+  }
+}
