@@ -48,5 +48,15 @@
   <br>
   <textarea name="description"></textarea>
   <br>  
+  <label>Category
+  <select name="category">
+    {% for value, label in categories %}
+    <option value="{{ value }}" {% if business.category == value %}selected{% endif %}>
+      {{ label }}
+    </option>
+    {% endfor %}
+    </select>
+  </label>
+  <br>
   <input class="create" type="submit" value="create new request">
 </form>
