@@ -37,11 +37,11 @@ def render_business_as_html(business):
         business=business,
         categories=reversed(list(enumerate(CATEGORIES))))
     
-def render_helprequest_list_as_html(helprequests):
+def render_business_list_as_html(businesses):
     return render_template(
-        'helprequests.html',
-        helprequests=helprequests,
-        priorities=PRIORITIES)
+        'businesses.html',
+        businesses=businesses,
+        categories=CATEGORIES)
 
 def nonempty_string(x):
     s = str(x)
@@ -52,20 +52,21 @@ def nonempty_string(x):
 #
 # specify the data we need to create a new help request
 #
-new_helprequest_parser = reqparse.RequestParser()
-for arg in ['from', 'title', 'description']:
-    new_helprequest_parser.add_argument(
+new_business_parser = reqparse.RequestParser()
+for arg in ['name', 'location', 'description']:
+    new_business_parser.add_argument(
         arg, type=nonempty_string, required=True,
         help="'{}' is a required value".format(arg))
 
 #
 # specify the data we need to update an existing help request
 #
-update_helprequest_parser = reqparse.RequestParser()
-update_helprequest_parser.add_argument(
-    'priority', type=int, default=PRIORITIES.index('normal'))
-update_helprequest_parser.add_argument(
-    'comment', type=str, default='')
+#
+#update_business_parser = reqparse.RequestParser()
+#update_business_parser.add_argument(
+ #   'priority', type=int, default=PRIORITIES.index('normal'))
+#update_helprequest_parser.add_argument(
+#    'comment', type=str, default='')
 
 #
 # specify the parameters for filtering and sorting help requests
@@ -74,14 +75,14 @@ query_parser = reqparse.RequestParser()
 query_parser.add_argument(
     'q', type=str, default='')
 query_parser.add_argument(
-    'sort-by', type=str, choices=('priority', 'time'), default='time')
+    'sort-by', type=str, choices=('category'), default='category')
         
 #
 # define our (kinds of) resources
 #
-class HelpRequest(Resource):
-    def get(self, helprequest_id):
-        error_if_helprequest_not_found(helprequest_id)
+class Business(Resource):
+    def get(self, business_id):
+        error_if_business_not_found(business_id)
         return make_response(
             render_helprequest_as_html(helprequests[helprequest_id]), 200) #gives the (a dictionary) we need 2 lists and two single item class definitions; start by just implementing GET methods
 
