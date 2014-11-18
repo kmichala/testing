@@ -1,0 +1,21 @@
+<!doctype html>
+<link rel="alternate" type="application/json" href="{{ events }}.json">
+<title>{{ event.name }}</title>
+<form class="event-editor" enctype="application/json" method="patch">
+Name:
+<input type="text" name="name" value={{ events.name }}><br>
+<!--do we want to include venues...? some events might not have a venue-->
+Venue:
+<input type="text" name="venue" value={{ events.venue }}><br>
+Location:
+<input type="text" name="location" value={{ events.location }}><br>
+Date:
+<input type="text" name="date" value={{ events.date }}><br>
+Time:
+<input type="text" name="time" value={{ events.time }}><br>
+Phone:
+<input type="text" name="phone" value={{ events.phone }}><br>
+Description:
+<input type="text" name="description" value={{ events.description }}><br>
+<input class="update" type="submit" value="update event">
+</form>
