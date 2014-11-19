@@ -27,9 +27,9 @@ def error_if_business_not_found(business_id):
 def filter_and_sort_businesses(q='', sort_by='category'):
     filter_function = lambda x: q.lower() in (
         x[1]['name'] + x[1]['description']).lower()
-    filtered_helprequests = filter(filter_function, businesses.items())
+    filtered_businesses = filter(filter_function, businesses.items())
     key_function = lambda x: x[1][sort_by]
-    return sorted(filtered_helprequests, key=key_function, reverse=True)
+    return sorted(filtered_businessess, key=key_function, reverse=True)
         
 def render_business_as_html(business):
     return render_template(
@@ -52,11 +52,11 @@ def nonempty_string(x):
 #
 # specify the data we need to create a new help request
 #
-new_business_parser = reqparse.RequestParser()
-for arg in ['name', 'location', 'description']:
-    new_business_parser.add_argument(
-        arg, type=nonempty_string, required=True,
-        help="'{}' is a required value".format(arg))
+#new_business_parser = reqparse.RequestParser()
+#for arg in ['name', 'location', 'description']:
+#    new_business_parser.add_argument(
+ #       arg, type=nonempty_string, required=True,
+  #      help="'{}' is a required value".format(arg))
 
 #
 # specify the data we need to update an existing help request
@@ -86,15 +86,15 @@ class Business(Resource):
         return make_response(
             render_business_as_html(businesses[business_id]), 200) #gives the (a dictionary) we need 2 lists and two single item class definitions; start by just implementing GET methods
 
-    def patch(self, business_id):
-        error_if_business_not_found(business_id)
-        business=businesses[business_id]
-        update = update_business_parser.parse_args()
-        business['category'] = update['category']
+  #  def patch(self, business_id):
+   #     error_if_business_not_found(business_id)
+    #    business=businesses[business_id]
+     #   update = update_business_parser.parse_args()
+      #  business['category'] = update['category']
        # if len(update['comment'].strip()) > 0:
         #    helprequest.setdefault('comments', []).append(update['comment'])
-        return make_response(
-            render_business_as_html(business), 200)
+      #  return make_response(
+       #     render_business_as_html(business), 200)
 
 class BusinessAsJSON(Resource):
     def get(self, business_id):
