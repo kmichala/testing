@@ -4,9 +4,9 @@
     "URL" : "acmecarrboro.com",
     "phone" : "919-929-2263",
     "hours" : "5:30pm-9pm",
-    "rating": 4.5,
+    "rating": "4.5",
     "description": "rad restauarant",
-    "category": 2,
+    "category": "2",
   },
   "dig73h":
   { "name" : "Orange County Social Club",
@@ -14,9 +14,9 @@
     "URL" : "orangecountysocialclub.com",
     "phone" : "919-933-0669",
     "hours" : "5:30pm-2am",
-    "rating": 3.9,
+    "rating": "3.9",
     "description": "rad bar",
-    "category": 3,
+    "category": "3",
   },
   "0f4uqv":
   { "name" : "Sofia's",
@@ -24,8 +24,8 @@
     "URL" : "carrmillmall.com.com",
     "phone" : "919-942-9008",
     "hours" : "10am-6pm",
-    "rating": 3.9,
+    "rating": "3.9",
     "description": "rad store",
-    "category": 1, 
+    "category": "1", 
   }
 }
