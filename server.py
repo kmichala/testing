@@ -7,10 +7,10 @@ import random
 from datetime import datetime
 
 # define our categories
-CATEGORIES = ( 'shopping', 'restaurant', 'nightlife' )
+#CATEGORIES = ( 'shopping', 'restaurant', 'nightlife' )
 
 # load business data from disk, load into dictionary (key/value)
-with open('data.json') as data:
+with open('businesses.json') as data:
     businesses = json.load(data)
 
 #
@@ -24,24 +24,24 @@ def error_if_business_not_found(business_id):
         message = "Business {} doesn't exist".format(business_id)    
         abort(404, message)
 
-def filter_and_sort_businesses(q='', sort_by='category'):
-    filter_function = lambda x: q.lower() in (
-        x[1]['name'] + x[1]['description']).lower()
-    filtered_businesses = filter(filter_function, businesses.items())
-    key_function = lambda x: x[1][sort_by]
-    return sorted(filtered_businessess, key=key_function, reverse=True)
+#def filter_and_sort_businesses(q='', sort_by='category'):
+ #   filter_function = lambda x: q.lower() in (
+  #      x[1]['name'] + x[1]['description']).lower()
+   # filtered_businesses = filter(filter_function, businesses.items())
+    #key_function = lambda x: x[1][sort_by]
+    #return sorted(filtered_businessess, key=key_function, reverse=True)
         
 def render_business_as_html(business):
     return render_template(
         'business.html',
         business=business,
-        categories=reversed(list(enumerate(CATEGORIES))))
+#        categories=reversed(list(enumerate(CATEGORIES))))
     
 def render_business_list_as_html(businesses):
     return render_template(
         'businesses.html',
         businesses=businesses,
-        categories=CATEGORIES)
+ #       categories=CATEGORIES)
 
 def nonempty_string(x):
     s = str(x)
@@ -71,11 +71,11 @@ def nonempty_string(x):
 #
 # specify the parameters for filtering and sorting help requests
 #
-query_parser = reqparse.RequestParser()
-query_parser.add_argument(
-    'q', type=str, default='')
-query_parser.add_argument(
-    'sort-by', type=str, choices=('category'), default='category')
+#query_parser = reqparse.RequestParser()
+#query_parser.add_argument(
+#    'q', type=str, default='')
+#query_parser.add_argument(
+#    'sort-by', type=str, choices=('category'), default='category')
         
 #
 # define our (kinds of) resources
