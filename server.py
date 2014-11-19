@@ -10,7 +10,7 @@ from datetime import datetime
 CATEGORIES = ( 'shopping', 'restaurant', 'nightlife' )
 
 # load business data from disk, load into dictionary (key/value)
-with open('business.json') as data:
+with open('businesses.json') as data:
     businesses = json.load(data)
 
 #
