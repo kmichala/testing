@@ -84,53 +84,53 @@ class Business(Resource):
     def get(self, business_id):
         error_if_business_not_found(business_id)
         return make_response(
-            render_helprequest_as_html(helprequests[helprequest_id]), 200) #gives the (a dictionary) we need 2 lists and two single item class definitions; start by just implementing GET methods
+            render_business_as_html(businesses[business_id]), 200) #gives the (a dictionary) we need 2 lists and two single item class definitions; start by just implementing GET methods
 
-    def patch(self, helprequest_id):
-        error_if_helprequest_not_found(helprequest_id)
-        helprequest=helprequests[helprequest_id]
-        update = update_helprequest_parser.parse_args()
-        helprequest['priority'] = update['priority']
-        if len(update['comment'].strip()) > 0:
-            helprequest.setdefault('comments', []).append(update['comment'])
+    def patch(self, business_id):
+        error_if_business_not_found(business_id)
+        business=businesses[business_id]
+        update = update_business_parser.parse_args()
+        business['category'] = update['category']
+       # if len(update['comment'].strip()) > 0:
+        #    helprequest.setdefault('comments', []).append(update['comment'])
         return make_response(
-            render_helprequest_as_html(helprequest), 200)
+            render_business_as_html(business), 200)
 
-class HelpRequestAsJSON(Resource):
-    def get(self, helprequest_id):
-        error_if_helprequest_not_found(helprequest_id)
-        return helprequests[helprequest_id]
+class BusinessAsJSON(Resource):
+    def get(self, business_id):
+        error_if_business_not_found(business_id)
+        return businesses[business_id]
     
-class HelpRequestList(Resource):
+class BusinessList(Resource):
     def get(self):
         query = query_parser.parse_args()
         return make_response(
-            render_helprequest_list_as_html(
-                filter_and_sort_helprequests(
+            render_business_list_as_html(
+                filter_and_sort_businesses(
                     q=query['q'], sort_by=query['sort-by'])), 200)
 
-    def post(self):
-        helprequest = new_helprequest_parser.parse_args()
-        helprequest['time'] = datetime.isoformat(datetime.now())
-        helprequest['priority'] = PRIORITIES.index('normal')
-        helprequests[generate_id()] = helprequest
-        return make_response(
-            render_helprequest_list_as_html(
-                filter_and_sort_helprequests()), 201)
+#def post(self): 
+#business = new_helprequest_parser.parse_args()
+  #      helprequest['time'] = datetime.isoformat(datetime.now())
+   #     helprequest['priority'] = PRIORITIES.index('normal')
+    #    helprequests[generate_id()] = helprequest
+     #   return make_response(
+      #      render_helprequest_list_as_html(
+       #         filter_and_sort_helprequests()), 201)
 
-class HelpRequestListAsJSON(Resource):
+class BusinessListAsJSON(Resource):
     def get(self):
-        return helprequests
+        return businesses
 
 #
 # assign URL paths to our resources
 #
 app = Flask(__name__)
 api = Api(app)
-api.add_resource(HelpRequestList, '/requests')
-api.add_resource(HelpRequestListAsJSON, '/requests.json')
-api.add_resource(HelpRequest, '/request/<string:helprequest_id>')
-api.add_resource(HelpRequestAsJSON, '/request/<string:helprequest_id>.json')
+api.add_resource(BusinessList, '/businesses')
+api.add_resource(BusinessListAsJSON, '/businesses.json')
+api.add_resource(Business, '/business/<string:business_id>')
+api.add_resource(BusinessAsJSON, '/business/<string:business_id>.json')
 
 # start the server
 if __name__ == '__main__':
