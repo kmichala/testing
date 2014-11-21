@@ -52,7 +52,7 @@ def nonempty_string(x):
 #
 # specify the data we need to create a new help request
 #
-new_business_parser = reqparse.BusinessParser()
+new_business_parser = reqparse.RequestParser()
 for arg in ['name', 'location', 'description']:
     new_business_parser.add_argument(
        arg, type=nonempty_string, required=True,
@@ -62,7 +62,7 @@ for arg in ['name', 'location', 'description']:
 # specify the data we need to update an existing help request
 #
 #
-#update_business_parser = reqparse.BusinessParser()
+#update_business_parser = reqparse.RequestParser()
 #update_business_parser.add_argument(
  #   'category', type=int, default=CATEGORIES.index('shop'))
 #update_helprequest_parser.add_argument(
@@ -71,7 +71,7 @@ for arg in ['name', 'location', 'description']:
 #
 # specify the parameters for filtering and sorting help requests
 #
-query_parser = reqparse.BusinessParser()
+query_parser = reqparse.RequestParser()
 query_parser.add_argument(
     'q', type=str, default='')
 query_parser.add_argument(
