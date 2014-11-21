@@ -19,3 +19,33 @@
   </li>
   {% endfor %}
 </ol>
+<form class="business-editor" action="{{ url_for('businesslist') }}" method="post">
+  <label>Name
+    <input name="name" type="text">
+  </label>
+  <br>
+  <label>Location
+    <input name="location" type="text">
+  </label>
+  <br>
+  <label>URL
+    <input name="URL" type="text">
+  </label>
+  <br>
+   <label>Phone
+    <input name="phone" type="text">
+  </label>
+  <br>
+  <label>Hours
+    <input name="hours" type="text">
+  </label>
+  <br>
+  <label>Rating
+    <input name="rating" type="text">
+  </label>
+  <br>
+  <textarea name="description"></textarea>
+  <br>
+  <input class="create" type="submit" value="create new business">
+</form>
+
