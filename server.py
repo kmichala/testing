@@ -7,7 +7,7 @@ import random
 from datetime import datetime
 
 # define our categories
-#CATEGORIES = ( 'shopping', 'restaurant', 'nightlife' )
+CATEGORIES = ( 'shop', 'restaurant', 'bar', 'club' )
 
 # load business data from disk, load into dictionary (key/value)
 with open('businesses.json') as data:
@@ -34,14 +34,14 @@ def error_if_business_not_found(business_id):
 def render_business_as_html(business):
     return render_template(
         'business.html',
-        business=business)
-#        categories=reversed(list(enumerate(CATEGORIES))))
+         business=business
+         categories=reversed(list(enumerate(CATEGORIES))))
     
 def render_business_list_as_html(businesses):
     return render_template(
         'businesses.html',
-        businesses=businesses)
- #       categories=CATEGORIES)
+        businesses=businesses
+        categories=CATEGORIES)
 
 def nonempty_string(x):
     s = str(x)
@@ -52,30 +52,30 @@ def nonempty_string(x):
 #
 # specify the data we need to create a new help request
 #
-#new_business_parser = reqparse.RequestParser()
-#for arg in ['name', 'location', 'description']:
-#    new_business_parser.add_argument(
- #       arg, type=nonempty_string, required=True,
-  #      help="'{}' is a required value".format(arg))
+new_business_parser = reqparse.BusinessParser()
+for arg in ['name', 'location', 'description']:
+    new_business_parser.add_argument(
+       arg, type=nonempty_string, required=True,
+       help="'{}' is a required value".format(arg))
 
 #
 # specify the data we need to update an existing help request
 #
 #
-#update_business_parser = reqparse.RequestParser()
+#update_business_parser = reqparse.BusinessParser()
 #update_business_parser.add_argument(
- #   'priority', type=int, default=PRIORITIES.index('normal'))
+ #   'category', type=int, default=CATEGORIES.index('shop'))
 #update_helprequest_parser.add_argument(
 #    'comment', type=str, default='')
 
 #
 # specify the parameters for filtering and sorting help requests
 #
-#query_parser = reqparse.RequestParser()
-#query_parser.add_argument(
-#    'q', type=str, default='')
-#query_parser.add_argument(
-#    'sort-by', type=str, choices=('category'), default='category')
+query_parser = reqparse.BusinessParser()
+query_parser.add_argument(
+    'q', type=str, default='')
+query_parser.add_argument(
+    'sort-by', type=str, choices=('category'), default='category')
         
 #
 # define our (kinds of) resources
@@ -86,15 +86,20 @@ class Business(Resource):
         return make_response(
             render_business_as_html(businesses[business_id]), 200) #gives the (a dictionary) we need 2 lists and two single item class definitions; start by just implementing GET methods
 
-  #  def patch(self, business_id):
-   #     error_if_business_not_found(business_id)
-    #    business=businesses[business_id]
-     #   update = update_business_parser.parse_args()
-      #  business['category'] = update['category']
-       # if len(update['comment'].strip()) > 0:
-        #    helprequest.setdefault('comments', []).append(update['comment'])
-      #  return make_response(
-       #     render_business_as_html(business), 200)
+    def patch(self, business_id):
+        error_if_business_not_found(business_id)
+         business=businesses[business_id]
+         update = update_business_parser.parse_args()
+         business['name'] = update['name']
+         business['location'] = update['location']
+         business['URL'] = update['URL']
+         business['phone'] = update['phone']
+         business['hours'] = update['hours']
+         business['rating'] = update['rating']
+         business['description'] = update['description']
+         business['category'] = update['category']
+        return make_response(
+            render_business_as_html(business), 200)
 
 class BusinessAsJSON(Resource):
     def get(self, business_id):
