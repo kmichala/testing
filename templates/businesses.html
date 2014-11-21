@@ -1,7 +1,7 @@
 <!doctype html>
 <link rel="alternate" type="application/json" href="{{ request.path }}.json">
 <title>All Businesses</title>
-<a href="{{ url_for('businesslist') }}?sort-by=cateogry">sort by category</a>
+<a href="{{ url_for('businesslist') }}?sort-by=category">sort by category</a>
 <form class="search" method="get">
   <input name="q" type="text" value="{{ request.args["q"] }}">
   {% if 'sort-by' in request.args %}
