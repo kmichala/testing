@@ -64,11 +64,9 @@ for arg in ['name', 'location', 'description']:
 # specify the data we need to update an existing help request
 #
 #
-#update_business_parser = reqparse.RequestParser()
-#update_business_parser.add_argument(
- #   'category', type=int, default=CATEGORIES.index('shop'))
-#update_helprequest_parser.add_argument(
-#    'comment', type=str, default='')
+update_business_parser = reqparse.RequestParser()
+update_business_parser.add_argument(
+    'category', type=int, default=CATEGORIES.index('shop'))
 
 #
 # specify the parameters for filtering and sorting help requests
@@ -116,14 +114,13 @@ class BusinessList(Resource):
                 filter_and_sort_businesses(
                     q=query['q'], sort_by=query['sort-by'])), 200)
 
-#def post(self): 
-#business = new_helprequest_parser.parse_args()
-  #      helprequest['time'] = datetime.isoformat(datetime.now())
-   #     helprequest['priority'] = PRIORITIES.index('normal')
-    #    helprequests[generate_id()] = helprequest
-     #   return make_response(
-      #      render_helprequest_list_as_html(
-       #         filter_and_sort_helprequests()), 201)
+def post(self): 
+business = new_business_parser.parse_args()
+        business['category'] = CATEGORIES.index('shop')
+        businesses[generate_id()] = business
+        return make_response(
+            render_business_list_as_html(
+                filter_and_sort_businesses()), 201)
 
 class BusinessListAsJSON(Resource):
     def get(self):
