@@ -11,7 +11,7 @@ CATEGORIES = ( 'shop', 'restaurant', 'bar', 'club' )
 
 # load business data from disk, load into dictionary (key/value)
 with open('businesses.json') as data:
-    businesses = json.load(business)
+    businesses = json.load(data)
 
 #
 # define some helper functions
