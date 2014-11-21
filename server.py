@@ -32,13 +32,11 @@ def filter_and_sort_businesses(q='', sort_by='category'):
     return sorted(filtered_businesses, key=key_function, reverse=True)
         
 def render_business_as_html(business):
-    renderTemplate = render_template(
+    return render_template(
         'business.html',
          business=business,
          categories=reversed(list(enumerate(CATEGORIES))))
-    print categories
-    return renderTemplate
-    
+
 def render_business_list_as_html(businesses):
     return render_template(
         'businesses.html',
