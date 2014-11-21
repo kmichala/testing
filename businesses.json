@@ -6,7 +6,7 @@
     "hours" : "5:30pm-9pm",
     "rating": "4.5",
     "description": "rad restauarant",
-    "category": "2",
+    "category": 2,
   },
   "dig73h":
   { "name" : "Orange County Social Club",
@@ -16,7 +16,7 @@
     "hours" : "5:30pm-2am",
     "rating": "3.9",
     "description": "rad bar",
-    "category": "3",
+    "category": 3,
   },
   "0f4uqv":
   { "name" : "Sofia's",
@@ -26,6 +26,6 @@
     "hours" : "10am-6pm",
     "rating": "3.9",
     "description": "rad store",
-    "category": "1", 
+    "category": 1, 
   }
 }
