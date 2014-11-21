@@ -116,11 +116,11 @@ class BusinessList(Resource):
 
 def post(self): 
     business = new_business_parser.parse_args()
-        business['category'] = CATEGORIES.index('shop')
-        businesses[generate_id()] = business
-        return make_response(
-            render_business_list_as_html(
-                filter_and_sort_businesses()), 201)
+    business['category'] = CATEGORIES.index('shop')
+    businesses[generate_id()] = business
+    return make_response(
+        render_business_list_as_html(
+            filter_and_sort_businesses()), 201)
 
 class BusinessListAsJSON(Resource):
     def get(self):
