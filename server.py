@@ -32,10 +32,12 @@ def filter_and_sort_businesses(q='', sort_by='category'):
     return sorted(filtered_businesses, key=key_function, reverse=True)
         
 def render_business_as_html(business):
-    return render_template(
+    renderTemplate = new render_template(
         'business.html',
          business=business,
          categories=reversed(list(enumerate(CATEGORIES))))
+    print categories
+    return renderTemplate
     
 def render_business_list_as_html(businesses):
     return render_template(
@@ -139,5 +141,4 @@ api.add_resource(BusinessAsJSON, '/business/<string:business_id>.json')
 
 # start the server
 if __name__ == '__main__':
-    print categories
     app.run(debug=True)
