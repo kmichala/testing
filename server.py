@@ -115,7 +115,7 @@ class BusinessList(Resource):
                     q=query['q'], sort_by=query['sort-by'])), 200)
 
 def post(self): 
-business = new_business_parser.parse_args()
+    business = new_business_parser.parse_args()
         business['category'] = CATEGORIES.index('shop')
         businesses[generate_id()] = business
         return make_response(
