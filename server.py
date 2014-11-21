@@ -139,4 +139,5 @@ api.add_resource(BusinessAsJSON, '/business/<string:business_id>.json')
 
 # start the server
 if __name__ == '__main__':
+    print categories
     app.run(debug=True)
