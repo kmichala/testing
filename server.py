@@ -24,12 +24,12 @@ def error_if_business_not_found(business_id):
         message = "Business {} doesn't exist".format(business_id)    
         abort(404, message)
 
-#def filter_and_sort_businesses(q='', sort_by='category'):
- #   filter_function = lambda x: q.lower() in (
-  #      x[1]['name'] + x[1]['description']).lower()
-   # filtered_businesses = filter(filter_function, businesses.items())
-    #key_function = lambda x: x[1][sort_by]
-    #return sorted(filtered_businessess, key=key_function, reverse=True)
+def filter_and_sort_businesses(q='', sort_by='category'):
+    filter_function = lambda x: q.lower() in (
+        x[1]['name'] + x[1]['description']).lower()
+    filtered_businesses = filter(filter_function, businesses.items())
+    key_function = lambda x: x[1][sort_by]
+    return sorted(filtered_businessess, key=key_function, reverse=True)
         
 def render_business_as_html(business):
     return render_template(
