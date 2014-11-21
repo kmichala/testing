@@ -29,7 +29,7 @@ def filter_and_sort_businesses(q='', sort_by='category'):
         x[1]['name'] + x[1]['description']).lower()
     filtered_businesses = filter(filter_function, businesses.items())
     key_function = lambda x: x[1][sort_by]
-    return sorted(filtered_businessess, key=key_function, reverse=True)
+    return sorted(filtered_businesses, key=key_function, reverse=True)
         
 def render_business_as_html(business):
     return render_template(
