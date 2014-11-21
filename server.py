@@ -34,12 +34,12 @@ def error_if_business_not_found(business_id):
 def render_business_as_html(business):
     return render_template(
         'business.html',
-         business=business
+         business=business,
          categories=reversed(list(enumerate(CATEGORIES))))
     
 def render_business_list_as_html(businesses):
     return render_template(
-        'business.html',
+        'businesses.html',
         businesses=businesses,
         categories=CATEGORIES)
 
