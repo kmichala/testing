@@ -39,8 +39,8 @@ def render_business_as_html(business):
     
 def render_business_list_as_html(businesses):
     return render_template(
-        'businesses.html',
-        businesses=businesses
+        'business.html',
+        businesses=businesses,
         categories=CATEGORIES)
 
 def nonempty_string(x):
