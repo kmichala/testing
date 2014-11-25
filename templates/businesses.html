@@ -55,7 +55,7 @@
   <label>Category
   <select name="category">
     (% for value, label in categories %)
-    <option value="{{ value }}" {% if business.category == value %}selected{% endif %}>
+    <option value="{{ value }}">
      {{ label }}
     </option>
   </select>
