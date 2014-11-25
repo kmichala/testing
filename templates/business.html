@@ -1,6 +1,7 @@
 <!doctype html>
 <link rel="alternate" type="application/json" href="{{ businesses }}.json">
 <title>{{ business.name }}</title>
+
 <form class="business-editor" enctype="application/json" method="patch">
 Name:
 <input type="text" name="name" value={{ business.name }}><br>
@@ -20,3 +21,5 @@ Category:
 <input type="text" name="category" value={{ business.category }}><br>
 <input class="update" type="submit" value="update business">
 </form>
+
+<a rel="collection" href="{{ url_for('businesslist') }}">all businesses</a>
