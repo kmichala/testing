@@ -18,7 +18,16 @@ Rating:
 Description:
 <input type="text" name="description" value={{ business.description }}><br>
 Category:
-<input type="text" name="category" value={{ business.category }}><br>
+<label>Category
+  <select name="category">
+    (% for value, label in categories %)
+    <option value="{{ value }}" {% if business.category == value %}selected{% endif %}>
+     {{ label }}
+    </option>
+    {% endfor %}
+  </select>
+</label>
+<!--<input type="text" name="category" value={{ business.category }}><br>-->
 <input class="update" type="submit" value="update business">
 </form>
 
