@@ -20,9 +20,9 @@ def generate_id(size=6, chars=string.ascii_lowercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
 def error_if_business_not_found(business_id):
-    if business_id not in businesses:
+    if business_id not in data["businesses"]:
         message = "Business {} doesn't exist".format(business_id)    
-        abort(404, message)
+        abort(404, message=message)
 
 def filter_and_sort_businesses(q='', sort_by='category'):
     filter_function = lambda x: q.lower() in (
@@ -60,7 +60,7 @@ for arg in ['name', 'location', 'description']:
 
 #
 # specify the data we need to update an existing help request
-#
+# do we need this at all...?
 #
 update_business_parser = reqparse.RequestParser()
 update_business_parser.add_argument(
@@ -73,7 +73,7 @@ query_parser = reqparse.RequestParser()
 query_parser.add_argument(
     'q', type=str, default='')
 query_parser.add_argument(
-    'sort-by', type=str, choices=('category'), default='category')
+    'sort-by', type=str, choices=('category', 'name'), default='category')
         
 #
 # define our (kinds of) resources
@@ -82,8 +82,8 @@ class Business(Resource):
     def get(self, business_id):
         error_if_business_not_found(business_id)
         return make_response(
-            render_business_as_html(businesses[business_id]), 200) #gives the (a dictionary) we need 2 lists and two single item class definitions; start by just implementing GET methods
-
+            render_business_as_html(businesses[business_id]), 200)
+            
     def patch(self, business_id):
         error_if_business_not_found(business_id)
         business=businesses[business_id]
@@ -114,7 +114,7 @@ class BusinessList(Resource):
 
 def post(self): 
     business = new_business_parser.parse_args()
-    business['category'] = CATEGORIES.index('shop')
+#    business['category'] = CATEGORIES.index('shop')
     businesses[generate_id()] = business
     return make_response(
         render_business_list_as_html(
