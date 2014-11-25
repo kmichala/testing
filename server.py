@@ -20,7 +20,7 @@ def generate_id(size=6, chars=string.ascii_lowercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
 def error_if_business_not_found(business_id):
-    if business_id not in data["businesses"]:
+    if business_id not in businesses:
         message = "Business {} doesn't exist".format(business_id)    
         abort(404, message=message)
 
