@@ -52,12 +52,15 @@
     <textarea name="description"></textarea>
   </label>
   <br>
-
-<!---  <label>Category
-    <input name="category" type="text">
+  <label>Category
+  <select name="category">
+    (% for value, label in categories %)
+    <option value="{{ value }}" {% if business.category == value %}selected{% endif %}>
+     {{ label }}
+    </option>
+    {% endfor %}
+  </select>
   </label>
-  Ryan's code has the selection automatically chosen... do we want that too..?
-  --->
   <input class="create" type="submit" value="create new business">
 </form>
 
